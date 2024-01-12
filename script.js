@@ -38,21 +38,27 @@ $("#run-search").on("click", function (event) {
 
 // Function to show a single article card in Bootstrap
 function showArticleCard(article) {
-
 	// Extract multimedia information from the articles; use a placeholder image from Picsum if multimedia is not available
 	const multimedia = article.multimedia?.[0];
 	const imageSrc = multimedia ? `https://www.nytimes.com/${multimedia.url}` : 'https://picsum.photos/300';
+
+	// Create an anchor element (<a>) around the entire card to make it clickable
+	const articleLink = $("<a>", {
+		href: article.web_url, // Use the article's web_url as the link
+		target: "_blank", // Open the link in a new tab
+		class: "text-decoration-none", // Remove underlines from the link
+	});
 
 	// Create an image element with Bootstrap/CSS styling
 	const imageElement = $("<img>", {
 		class: "card-img-top",
 		src: imageSrc,
 		alt: "Article Image",
-		css: { "max-height": "300px", "object-fit": "cover" }
+		css: { "max-height": "300px", "object-fit": "cover" },
 	});
 
-	// Format the article title
-	const titleElement = $("<h5>", { class: "card-title mt-3" }).text(article.headline.main);
+	// Format the article title with underlining
+	const titleElement = $("<h5>", { class: "card-title mt-3 text-decoration-underline" }).text(article.headline.main);
 
 	// Format the publication date as a localized string
 	const publishDate = new Date(article.pub_date).toLocaleDateString();
@@ -64,9 +70,20 @@ function showArticleCard(article) {
 	// Format a snippet from the article
 	const snippetElement = $("<p>", { class: "card-text" }).text(article.snippet);
 
-	const articleCard = $("<div>", { class: "card" }).append(imageElement, titleElement, dateElement, authorElement, snippetElement);
+	// Create the article card and append all elements
+	const articleCard = $("<div>", { class: "card" }).append(
+		imageElement,
+		titleElement,
+		dateElement,
+		authorElement,
+		snippetElement
+	);
 
-	return $("<div>", { class: "col mb-4" }).append(articleCard);
+	// Append the article card to the clickable link
+	articleLink.append(articleCard);
+
+	// Wrap the entire structure in a div with additional Bootstrap styling
+	return $("<div>", { class: "col mb-4" }).append(articleLink);
 }
 
 // Function to show articles on the frontend in Bootstrap
