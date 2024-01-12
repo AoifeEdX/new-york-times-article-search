@@ -2,23 +2,30 @@
 
 ## Description
 
-Class mini project using the [New York Times API](https://developer.nytimes.com/docs/articlesearch-product/1/overview).
+Class mini-project using the [New York Times API](https://developer.nytimes.com/docs/articlesearch-product/1/overview).
 
 ![nyt-search](images/nyt.png)
 
 
-## Work done
 
-- Begin creating basic click events. Register the "Submit" button.
+## Code Funtionality:
 
-- Create working transfers of data between the text boxes and the back end.
+* Uses an event listener for the "Search" button to handle user input and initiate API requests.
 
-- Experiment with creating content regions for where the article will go.
+* Captures user input from the HTML form; trims and stores the input values in variables.
 
-## Back-End Team
+* Uses a fetch request for data from the constructed New York Times Article Search API URL.
 
-- Create the Fetch call needed to retrieve data, then console.log all of the relevant fields.
+* Parses the JSON response and logs the data for debugging.
 
-- Incorporate various “optional parameters” (hardcode these in initially).
+* Logs an error message if there was an issue fetching data from the API.
 
-- Take note of various “bugs” that appear with certain searches.
+* Extracts articles from the API response and formats them for display on the front end in a Bootstrap-styled layout, including:
+	* Image
+	* Title
+	* Publication date
+	* Author byline
+	* Snippet of the article
+
+* Clears previous articles before rendering new ones.
+
