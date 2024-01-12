@@ -32,5 +32,7 @@ Class mini-project using the [New York Times API](https://developer.nytimes.com/
 	* Author byline
 	* Snippet of the article
 
+* Links to the NY Times article and opens the article when the search result is clicked.
+
 * Clears previous articles before rendering new ones.
 
