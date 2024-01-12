@@ -1,5 +1,10 @@
 # New York Times Article Search
 
+## Links
+
+* [Deployed site](https://aoifeedx.github.io/new-york-times-article-search/)
+* [Github repo](https://github.com/AoifeEdX/new-york-times-article-search)
+
 ## Description
 
 Class mini-project using the [New York Times API](https://developer.nytimes.com/docs/articlesearch-product/1/overview).
