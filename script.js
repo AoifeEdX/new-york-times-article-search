@@ -26,7 +26,12 @@ $("#run-search").on("click", function (event) {
 			const articles = data?.response?.docs || [];
 
 			// Console log relevant fields of articles (title and snippet)
-			console.log("Relevant Fields from Articles:", articles.map(({ headline, snippet }) => ({ title: headline.main, snippet })));
+			console.log("Relevant Fields from Articles:", articles.map(function (article) {
+				return {
+					title: article.headline.main,
+					snippet: article.snippet,
+				};
+			}));
 
 			// Display the articles on the frontend (using the showArticles function below)
 			showArticles(articles, articleCount);
@@ -46,7 +51,7 @@ function showArticleCard(article) {
 	const articleLink = $("<a>", {
 		href: article.web_url, // Use the article's web_url as the link
 		target: "_blank", // Open the link in a new tab
-		class: "text-decoration-none", // Remove underlines from the link
+		class: "text-decoration-none", // Remove link underlines from text within the article cards
 	});
 
 	// Create an image element with Bootstrap/CSS styling
@@ -57,7 +62,7 @@ function showArticleCard(article) {
 		css: { "max-height": "300px", "object-fit": "cover" },
 	});
 
-	// Format the article title with underlining
+	// Format the article title with link-style underline
 	const titleElement = $("<h5>", { class: "card-title mt-3 text-decoration-underline" }).text(article.headline.main);
 
 	// Format the publication date as a localized string
@@ -88,14 +93,18 @@ function showArticleCard(article) {
 
 // Function to show articles on the frontend in Bootstrap
 function showArticles(articles, articleCount) {
-	const articleSection = $("#article-section").empty(); // Clear previous articles
+	// Clear previous articles
+	const articleSection = $("#article-section").empty();
 
-	const articleRow = $("<div>", { class: "row row-cols-1 row-cols-md-2 g-4" });
-
-	// Display only the number of articles selected by the user
+	// Display  the number of articles selected by the user
 	const displayedArticles = articles.slice(0, articleCount);
 
+	// Create a row in Bootstrap to show the article cards
+	const articleRow = $("<div>", { class: "row row-cols-1 row-cols-md-2 g-4" });
+
 	// Create and append article cards for each displayed article
-	displayedArticles.forEach(article => articleRow.append(showArticleCard(article)));
+	displayedArticles.forEach(function (article) {
+		articleRow.append(showArticleCard(article));
+	});
 	articleSection.append(articleRow);
 }
