@@ -9,7 +9,7 @@
 
 Class mini-project using the [New York Times API](https://developer.nytimes.com/docs/articlesearch-product/1/overview).
 
-![nyt-search](images/nyt.png)
+![nyt-search](nyt.png)
 
 
 
